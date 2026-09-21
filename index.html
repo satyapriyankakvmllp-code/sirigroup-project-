@@ -206,12 +206,11 @@
   .growth-banner b{font-weight:800;}
   .growth-banner .gb-star{font-size:.75em; opacity:.9;}
   .modal-tagline{
-    align-self:flex-start; display:inline-flex; align-items:center; gap:12px; margin-top:12px; padding:12px 20px; border-radius:14px;
-    background:var(--grad); color:#fff; font-family:var(--brand-font); font-weight:600; font-size:16px; letter-spacing:.5px;
-    box-shadow:0 10px 22px rgba(28,111,235,.22);
+    position:relative; align-self:flex-start; margin-top:14px; padding:2px 0 2px 18px;
+    font-family:var(--brand-font); font-weight:600; font-size:clamp(20px,2.2vw,24px); line-height:1.25; letter-spacing:.2px; color:var(--navy);
   }
-  .modal-tagline b{font-weight:800;}
-  .modal-tagline .gb-star{font-size:.75em; opacity:.9;}
+  .modal-tagline::before{content:""; position:absolute; left:0; top:3px; bottom:3px; width:4px; border-radius:4px; background:linear-gradient(180deg,#1C6FEB,#1FAE63);}
+  .modal-tagline b{font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
   .tagline-script{font-family:'Brush Script MT', cursive; color:var(--green); font-size:20px; transform:rotate(-3deg);}
   .badge-strip{
     display:flex; justify-content:center; gap:40px; flex-wrap:wrap; padding:64px 0 40px 0; font-weight:700; font-size:14px; color:var(--navy-2);
@@ -330,18 +329,30 @@
   .progress-row .label-row{display:flex; justify-content:space-between; font-weight:700; font-size:14px; color:var(--navy-2);}
   .progress-track{height:8px; background:#E4ECF4; border-radius:99px; overflow:hidden;}
   .progress-fill{height:100%; background:var(--grad); border-radius:99px;}
-  .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:52px;}
-  .stat-card{background:#F7FBFF; border-radius:18px; padding:22px; display:flex; flex-direction:column; gap:6px; align-items:flex-start;}
-  .stat-card b{font-size:26px; color:var(--navy);}
-  .stat-card span{font-size:13px; color:var(--muted); font-weight:600;}
+  .stat-row{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:52px;}
+  .stat-card{
+    background:#F7FBFF; border:1px solid #E4ECF5; border-radius:20px; padding:26px 20px; min-height:140px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px;
+    box-shadow:0 8px 22px rgba(15,46,82,.05);
+  }
+  .stat-card b{font-family:var(--brand-font); font-size:clamp(28px,3vw,36px); font-weight:800; line-height:1; letter-spacing:.2px; color:var(--navy);}
+  .stat-card span{font-size:13.5px; line-height:1.35; color:var(--muted); font-weight:600;}
 
   /* ===== Fin Hub ===== */
   #finhub{background-image:var(--dots), var(--mint-bg); background-size:22px 22px, auto;}
-  .fin-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
-  .fin-card{background:#fff; border-radius:22px; box-shadow:var(--shadow); padding:32px; display:flex; flex-direction:column; gap:18px;}
-  .tag-row{display:flex; flex-wrap:wrap; gap:10px;}
-  .tag-pill{border:1px solid #DCE7F2; border-radius:999px; padding:8px 14px; font-size:13px; font-weight:700; color:var(--navy-2); background:#fff;}
-  .fin-card img.fin-photo{border-radius:18px; width:100%;}
+  .fin-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:stretch;}
+  .fin-card, .fin-photo-wrap{background:#fff; border:1px solid #E6EEF7; border-radius:24px; box-shadow:var(--shadow);}
+  .fin-card{padding:34px; display:flex; flex-direction:column; gap:20px; min-width:0;}
+  .fin-card > p{font-size:15.5px; line-height:1.7; color:#4B6178;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:9px 10px;}
+  .tag-pill{border:1px solid #DCE7F2; border-radius:999px; padding:8px 14px; font-size:13px; font-weight:700; color:var(--navy-2); background:#F8FBFF;}
+  .fin-card .progress-row{gap:8px;}
+  .fin-card .label-row{font-family:var(--brand-font); font-size:15px; font-weight:700; letter-spacing:.2px; gap:12px;}
+  .fin-card .progress-track{height:9px;}
+  .fin-card .btn{margin-top:4px;}
+  /* photo card: same box as the text card (grid stretch), image contained inside it */
+  .fin-photo-wrap{display:flex; align-items:center; justify-content:center; padding:14px; min-width:0; overflow:hidden; background:linear-gradient(160deg,#EAF7F1 0%,#E3F1FB 55%,#DCEBFF 100%); border-color:#D9E8F5;}
+  .fin-photo-wrap img.fin-photo{width:100%; height:auto; aspect-ratio:1340 / 890; max-height:100%; object-fit:contain; border-radius:16px;}
 
   /* ===== Travel ===== */
   #travel{background:#fff;}
@@ -372,8 +383,9 @@
     flex:0 0 var(--tw); width:var(--tw); scroll-snap-align:center; scroll-snap-stop:always;
     background:#fff; border-radius:20px; box-shadow:var(--shadow); padding:26px; display:flex; flex-direction:column; gap:16px;
     border:1px solid transparent; transform:scale(.94); opacity:.78;
-    transition:transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s ease, box-shadow .45s ease, border-color .45s ease;
+    transition:transform 1s ease-in-out, opacity 1s ease-in-out, box-shadow 1s ease-in-out, border-color 1s ease-in-out;
   }
+  .tst-track.no-tr .tst-card{transition:none !important;}
   .tst-card.is-active{transform:none; opacity:1; border-color:#BFDAF2; box-shadow:0 22px 44px rgba(15,46,82,.16);}
   .tst-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
   .tst-tag{font-size:11.5px; font-weight:700; color:var(--blue); background:#EAF3FF; padding:6px 10px; border-radius:999px;}
@@ -476,7 +488,10 @@
   .contact-feature b{font-size:14.5px; color:var(--navy); display:block;}
   .contact-feature span{font-size:12.5px; color:var(--muted);}
   .contact-right{padding:44px;}
-  .contact-right h2{font-size:26px; margin-bottom:6px;}
+  .contact-right h2{font-size:clamp(26px,2.6vw,30px); line-height:1.12; margin-bottom:8px;}
+  .contact-right h2 .accent{font-size:1.14em; font-weight:800;}
+  .contact-left h2.contact-title{font-size:clamp(28px,3vw,34px); line-height:1.12;}
+  .contact-title .accent{font-size:1.16em; font-weight:800; white-space:nowrap;}
   .contact-right > p{margin-bottom:22px; font-size:14px;}
   form{display:flex; flex-direction:column; gap:16px;}
   .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
@@ -573,7 +588,6 @@
     .travel-grid{grid-template-columns:1fr;}
     .why-top{grid-template-columns:1fr; gap:40px;}
     .why-photo{max-width:640px;}
-    .stat-row{grid-template-columns:1fr 1fr;}
     .contact-grid{grid-template-columns:1fr;}
     .form-row{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
@@ -594,9 +608,6 @@
     .mini-card .ico{width:34px; height:34px; font-size:15px;}
     .mini-card h3{font-size:15px;}
     .mini-card p{font-size:12.5px; line-height:1.55;}
-    .stat-row{grid-template-columns:1fr;}
-    .stat-card{padding:18px 20px; flex-direction:row; align-items:baseline; gap:14px;}
-    .stat-card b{min-width:78px;}
     .tst-carousel{margin-left:-16px; margin-right:-16px;}
     .tst-track{gap:14px;}
     .tst-card{padding:22px 20px;}
@@ -628,7 +639,6 @@
     .contact-left, .contact-right{padding:28px 22px;}
     .wf-photos{gap:10px;}
     .wf-photos img{border-radius:16px;}
-    .stat-row{gap:12px;}
     .stats-bar{padding:14px; gap:12px; border-radius:20px;}
     .svc-chips{gap:10px;}
     .svc-chip{flex-direction:column; align-items:flex-start; gap:10px; padding:14px 12px;}
@@ -693,6 +703,87 @@
     .chip-title{font-size:13.5px;}
     .growth-banner{flex-basis:100%; justify-content:center; padding:12px 0 0; border-left:0; border-top:1px solid #E3ECF6; font-size:16px;}
   }
+
+  /* ===== Mobile menu: compact text-only service tiles (no images) ===== */
+  .mobile-sub{margin:8px 0 10px; padding:12px; border-radius:18px; gap:8px;}
+  .mobile-sub .dd-title{font-size:11.5px; padding:0 4px 2px;}
+  .mobile-menu-panel a.dd-item{
+    display:grid; grid-template-columns:36px minmax(0,1fr); grid-template-areas:"ic name" "ic tag"; column-gap:12px; row-gap:3px; align-items:center;
+    padding:9px 12px; min-height:56px; border-radius:14px; font-size:14.5px; line-height:1.2;
+  }
+  .mobile-menu-panel a.dd-item .dd-ic{grid-area:ic; width:36px; height:36px; border-radius:11px;}
+  .mobile-menu-panel a.dd-item .dd-name{grid-area:name; align-self:end;}
+  .mobile-menu-panel a.dd-item .dd-tag{grid-area:tag; justify-self:start; align-self:start; font-size:9.5px; padding:3px 8px;}
+  .mobile-menu-panel a.dd-item:active{transform:scale(.985);}
+  .mobile-menu-panel a.mm-all{padding:6px 4px 0;}
+
+  /* ===== SIRI Global Solutions stat cards: 2 x 2 square grid on mobile ===== */
+  @media (max-width:700px){
+    .stat-row{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; max-width:480px; margin:36px auto 0;}
+    .stat-card{aspect-ratio:1 / 1; min-height:0; padding:12px; border-radius:18px; gap:8px;}
+    .stat-card b{font-size:clamp(28px,9vw,36px);}
+    .stat-card span{font-size:13px;}
+  }
+
+  /* ===== Contact: alignment on desktop + mobile ===== */
+  .contact-left{justify-content:center;}
+  .contact-left .logo-pill{margin-bottom:4px;}
+  .contact-feature{align-items:center;}
+  @media (max-width:980px){
+    .contact-left{gap:14px;}
+  }
+  @media (max-width:600px){
+    .modal-box{border-radius:22px;}
+    .contact-left{padding:22px 18px 20px; gap:12px;}
+    .contact-right{padding:22px 18px 24px;}
+    .contact-left .logo-pill{padding:7px 18px;}
+    .contact-left .logo-pill .logo{height:36px;}
+    .contact-feature .ico{width:32px; height:32px; font-size:14px;}
+    .modal-tagline{margin-top:6px; font-size:20px;}
+    .contact-left h2.contact-title{font-size:25px;}
+    .contact-title .accent{font-size:1.12em;}
+    .modal-close{top:12px; right:12px;}
+  }
+
+  /* ===== Floating contact icon: lifted so it never collides with the footer or a host badge (e.g. Netlify) ===== */
+  .wa-float{right:20px; bottom:calc(84px + env(safe-area-inset-bottom,0px));}
+  footer{padding-bottom:calc(150px + env(safe-area-inset-bottom,0px));}   /* room for the floating icon + any host badge, so footer links are never covered */
+  @media (max-width:600px){
+    .wa-float{right:14px; width:52px; height:52px; font-size:24px; bottom:calc(76px + env(safe-area-inset-bottom,0px));}
+  }
+
+  /* ===== Mobile hamburger menu: full gradient theme with white tiles (same look as the Services dropdown) ===== */
+  .mobile-menu-panel{
+    background:linear-gradient(165deg,#2F86EE 0%,#37AEC0 52%,#4BC470 100%);
+    width:92%; max-width:380px; gap:0; padding:18px 16px;
+    padding-top:calc(18px + env(safe-area-inset-top,0px)); padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));
+    box-shadow:-20px 0 50px rgba(0,0,0,.30);
+  }
+  .mobile-menu-panel :focus-visible{outline-color:#fff;}
+  .mobile-top{margin-bottom:12px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.32);}
+  .mobile-top .logo-pill{padding:6px 16px; box-shadow:0 6px 16px rgba(6,40,80,.22);}
+  .mobile-top .logo-pill .logo{height:34px;}
+  .mobile-close{background:#fff; color:var(--navy); box-shadow:0 6px 16px rgba(6,40,80,.22);}
+  .mobile-menu-panel .mm-title{padding:0 6px 8px; font-size:11.5px;}
+  .mobile-menu-panel a.mm-link, .mm-toggle{
+    display:flex; align-items:center; gap:14px; width:100%; min-height:56px; padding:9px 14px; margin:0 0 8px;
+    background:#fff; border:0; border-radius:14px; box-shadow:0 4px 12px rgba(10,40,80,.13);
+    font-family:inherit; font-size:15.5px; font-weight:700; line-height:1.2; color:var(--navy); text-align:left;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .mobile-menu-panel a.mm-link:active, .mm-toggle:active{transform:scale(.985);}
+  .mm-toggle[aria-expanded="true"]{color:var(--navy);}
+  .mm-label{flex:1; min-width:0;}
+  .mm-go, .mm-toggle .chev{width:18px; height:18px; flex:none; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; color:#7C93AB;}
+  .mm-toggle[aria-expanded="true"] .chev{color:var(--blue);}
+  .mobile-menu-panel .dd-ic{width:36px; height:36px; border-radius:11px;}
+  .mobile-sub{margin:0 0 8px; padding:10px; border-radius:16px; gap:8px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4); box-shadow:none;}
+  .mobile-sub .dd-title{padding:2px 4px 0;}
+  .mobile-menu-panel a.dd-item{margin:0;}
+  .mobile-menu-panel a.mobile-cta{
+    margin-top:auto; background:var(--navy); color:#fff; border-radius:999px; padding:15px 26px; font-size:16px;
+    box-shadow:0 12px 24px rgba(6,20,45,.38);
+  }
 </style>
 </head>
 <body>
@@ -733,11 +824,12 @@
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-panel">
     <div class="mobile-top">
-      <svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg>
+      <span class="logo-pill"><svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg></span>
       <button class="mobile-close" id="mobileCloseBtn" aria-label="Close menu">×</button>
     </div>
-    <a href="#home">Home</a>
-    <button type="button" class="mm-toggle" id="mmServicesToggle" aria-expanded="false" aria-controls="mmServices">Services <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="dd-title mm-title">✦ MENU</div>
+    <a href="#home" class="mm-link"><span class="dd-ic blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span><span class="mm-label">Home</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+    <button type="button" class="mm-toggle" id="mmServicesToggle" aria-expanded="false" aria-controls="mmServices"><span class="dd-ic green"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="mm-label">Services</span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
     <div class="mm-collapse" id="mmServices"><div class="mm-collapse-inner">
     <div class="mobile-sub">
       <div class="dd-title">✦ CORPORATE SOLUTIONS</div>
@@ -749,9 +841,9 @@
       <a href="#services" class="mm-all">View all services →</a>
     </div>
     </div></div>
-    <a href="#about">About Us</a>
-    <a href="#why">Why Choose Us</a>
-    <a href="#testimonials">Testimonials</a>
+    <a href="#about" class="mm-link"><span class="dd-ic blue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="mm-label">About Us</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+    <a href="#why" class="mm-link"><span class="dd-ic green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mm-label">Why Choose Us</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+    <a href="#testimonials" class="mm-link"><span class="dd-ic indigo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mm-label">Testimonials</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
     <a href="#" class="btn btn-primary mobile-cta" id="contactUsBtnMobile">Contact Us <span>→</span></a>
   </div>
 </div>
@@ -1165,15 +1257,15 @@
       <div class="contact-left">
         <span class="logo-pill"><svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg></span>
         <span class="eyebrow" style="align-self:flex-start;">🤝 Let's Build Something Great</span>
-        <h2 id="modalTitle" style="font-size:26px;">Connect With <span class="accent">SIRI Group</span></h2>
+        <h2 id="modalTitle" class="contact-title">Connect With <span class="accent">SIRI Group</span></h2>
         <p>Get in touch with us for professional consultation and customized solutions for your business needs.</p>
         <div class="contact-feature"><span class="ico">👥</span><div><b>Expert Guidance</b><span>Get advice from our industry experts</span></div></div>
         <div class="contact-feature"><span class="ico">🛡️</span><div><b>Tailored Solutions</b><span>Customized to your business needs</span></div></div>
         <div class="contact-feature"><span class="ico">⚡</span><div><b>Quick Response</b><span>We value your time</span></div></div>
-        <div class="modal-tagline"><span class="gb-star" aria-hidden="true">✦</span><span>Your Growth, <b>Our Priority</b></span></div>
+        <div class="modal-tagline">Your Growth, <b>Our Priority</b></div>
       </div>
       <div class="contact-right">
-        <h2>Connect With SIRI Group</h2>
+        <h2>Connect With <span class="accent">SIRI Group</span></h2>
         <p>Direct WhatsApp advisory desk · Response within 15 minutes</p>
         <form id="modalForm">
           <div class="field"><label for="mFullName">Full Name *</label><input id="mFullName" type="text" placeholder="e.g. Rajesh Sharma" required></div>
@@ -1269,57 +1361,155 @@
   modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeModal(); closeMenu(); document.getElementById('lightbox').classList.remove('open'); } });
 
-  // Testimonials carousel (horizontal, snap, arrows, dots, gentle autoplay)
+  // Testimonials carousel: infinite loop, slow auto-slide (10 s hold), arrows / dots / swipe
   (function(){
     var track = document.getElementById('tstTrack');
     if(!track) return;
-    var cards = [].slice.call(track.querySelectorAll('.tst-card'));
+    var originals = [].slice.call(track.querySelectorAll('.tst-card'));
+    var N = originals.length;
+    if(!N) return;
     var dots = [].slice.call(document.querySelectorAll('#tstDots button'));
-    var idx = 0, timer = null, paused = false, ticking = false;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function centerOf(i){ var c = cards[i]; return c.offsetLeft + c.offsetWidth/2 - track.clientWidth/2; }
-    function setActive(i){
-      idx = i;
-      cards.forEach(function(c, n){ c.classList.toggle('is-active', n === i); });
-      dots.forEach(function(d, n){ d.classList.toggle('active', n === i); });
+    var HOLD = 10000;      // how long each state stays visible
+    var SLOW = 1800;       // auto-slide duration (ms)
+    var MANUAL = 1000;     // arrow / dot navigation duration (ms)
+    var reduce = false;   // autoplay always runs (the slide is JS-driven, so it is not affected by OS animation settings)
+
+    // Clone cards on both ends so the loop is seamless (no rewinding, no abrupt swap)
+    var K = Math.min(3, N);
+    function clone(c){ var x = c.cloneNode(true); x.classList.add('is-clone'); x.setAttribute('aria-hidden','true'); return x; }
+    for(var i = N - K; i < N; i++){ track.insertBefore(clone(originals[i]), originals[0]); }   // ends up in original order
+    for(var j = 0; j < K; j++){ track.appendChild(clone(originals[j])); }
+    var cards = [].slice.call(track.querySelectorAll('.tst-card'));
+
+    var pos = K + (N > 1 ? 1 : 0);   // start: card 2 centred, cards 1 and 3 either side (as in the reference)
+    var animating = false, rafId = 0, timer = null, settleT = null;
+    var inView = false, userPaused = false, pausedAt = 0, dueAt = Infinity;
+
+    function realIdx(p){ return ((p - K) % N + N) % N; }
+    function centerOf(p){ var c = cards[p]; return c.offsetLeft + c.offsetWidth / 2 - track.clientWidth / 2; }
+    function setActive(p){
+      cards.forEach(function(c, n){ c.classList.toggle('is-active', n === p); });
+      var r = realIdx(p);
+      dots.forEach(function(d, n){ d.classList.toggle('active', n === r); });
     }
-    function go(i, instant){
-      i = (i + cards.length) % cards.length;
-      track.scrollTo({ left: centerOf(i), behavior: instant ? 'auto' : 'smooth' });
-      setActive(i);
+    function ease(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }   // ease-in-out cubic
+
+    function jumpTo(p){            // instant, invisible re-position (clone -> real twin)
+      track.classList.add('no-tr');
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = centerOf(p);
+      pos = p; setActive(p);
+      void track.offsetWidth;
+      requestAnimationFrame(function(){ track.classList.remove('no-tr'); track.style.scrollSnapType = ''; });
     }
-    function onScroll(){
-      if(ticking) return; ticking = true;
-      requestAnimationFrame(function(){
-        ticking = false;
-        var mid = track.scrollLeft + track.clientWidth/2, best = 0, bestD = 1e9;
-        cards.forEach(function(c, n){
-          var d = Math.abs(c.offsetLeft + c.offsetWidth/2 - mid);
-          if(d < bestD){ bestD = d; best = n; }
-        });
-        if(best !== idx) setActive(best);
+    function normalize(){
+      if(pos >= K + N) jumpTo(pos - N);
+      else if(pos < K) jumpTo(pos + N);
+    }
+    function animateTo(target, dur, done){
+      cancelAnimationFrame(rafId);
+      var from = track.scrollLeft, dist = target - from, t0 = null;
+      track.style.scrollSnapType = 'none';     // snapping would fight the animation
+      animating = true;
+      function step(ts){
+        if(t0 === null) t0 = ts;
+        var t = Math.min(1, (ts - t0) / dur);
+        track.scrollLeft = from + dist * ease(t);
+        if(t < 1){ rafId = requestAnimationFrame(step); }
+        else { animating = false; track.style.scrollSnapType = ''; if(done) done(); }
+      }
+      rafId = requestAnimationFrame(step);
+    }
+    function goTo(p, dur){
+      if(animating) return;
+      p = Math.max(0, Math.min(cards.length - 1, p));
+      pos = p; setActive(p);
+      if(reduce){ track.scrollLeft = centerOf(p); track.style.scrollSnapType = ''; normalize(); return; }
+      animateTo(centerOf(p), dur, function(){ normalize(); schedule(); });
+    }
+
+    // ---- autoplay: hold 10 s -> slide slowly -> hold again ----
+    function clearT(){ dueAt = Infinity; }
+    function schedule(delay){ dueAt = Date.now() + (delay == null ? HOLD : delay); }
+    function pause(){ userPaused = true; pausedAt = Date.now(); clearT(); }
+    function resume(){ userPaused = false; schedule(); }
+    function visibleNow(){
+      if(document.hidden) return false;
+      var r = track.getBoundingClientRect(), vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.bottom > vh * 0.1 && r.top < vh * 0.9;
+    }
+    setInterval(function(){
+      if(userPaused && Date.now() - pausedAt > 8000) userPaused = false;   // never stay paused by a missed touch/pointer end
+      if(animating || Date.now() < dueAt) return;
+      inView = visibleNow();
+      if(!inView || userPaused){ schedule(1000); return; }                // wait until visible, then continue
+      dueAt = Infinity;
+      goTo(pos + 1, SLOW);                                                 // schedule() runs when the slide ends -> next 10 s hold
+    }, 250);
+    function interrupt(){                   // a click during a slide takes over smoothly from the current position
+      clearT();
+      if(animating){ cancelAnimationFrame(rafId); animating = false; }
+      var d = pos >= K + N ? -N : (pos < K ? N : 0);   // keep the logical position inside the cloned range
+      if(d){
+        var shift = centerOf(pos + d) - centerOf(pos);
+        track.classList.add('no-tr'); track.style.scrollSnapType = 'none';
+        track.scrollLeft += shift; pos += d; setActive(pos);
+        void track.offsetWidth;
+        requestAnimationFrame(function(){ track.classList.remove('no-tr'); });
+      }
+    }
+    function manual(delta){
+      interrupt();
+      goTo(pos + delta, MANUAL);            // schedule() runs after the move -> auto resumes after a 10 s pause
+    }
+
+    document.getElementById('tstPrev').addEventListener('click', function(){ manual(-1); });
+    document.getElementById('tstNext').addEventListener('click', function(){ manual(1); });
+    dots.forEach(function(d, n){
+      d.addEventListener('click', function(){
+        interrupt();
+        var diff = n - realIdx(pos);
+        if(diff > N / 2) diff -= N;
+        if(diff < -N / 2) diff += N;
+        if(!diff){ schedule(); return; }
+        goTo(pos + diff, MANUAL + (Math.abs(diff) - 1) * 250);
       });
-    }
-    track.addEventListener('scroll', onScroll, {passive:true});
-    document.getElementById('tstPrev').addEventListener('click', function(){ go(idx - 1); restart(); });
-    document.getElementById('tstNext').addEventListener('click', function(){ go(idx + 1); restart(); });
-    dots.forEach(function(d, n){ d.addEventListener('click', function(){ go(n); restart(); }); });
-    track.addEventListener('keydown', function(e){
-      if(e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); restart(); }
-      if(e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); restart(); }
     });
-    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-    function start(){ if(reduce || paused || timer) return; timer = setInterval(function(){ go(idx + 1); }, 5500); }
-    function restart(){ stop(); start(); }
-    var wrap = track.parentNode;
-    ['mouseenter','focusin','touchstart','pointerdown'].forEach(function(ev){ wrap.addEventListener(ev, function(){ paused = true; stop(); }, {passive:true}); });
-    ['mouseleave','focusout'].forEach(function(ev){ wrap.addEventListener(ev, function(){ paused = false; start(); }); });
-    wrap.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; start(); }, 4000); }, {passive:true});
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(en){ en[0].isIntersecting ? start() : stop(); }, {threshold:0.3}).observe(track);
-    } else { start(); }
-    window.addEventListener('resize', function(){ go(idx, true); });
-    go(0, true);
+    track.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight'){ e.preventDefault(); manual(1); }
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); manual(-1); }
+    });
+
+    // ---- touch / trackpad swipe: settle, re-centre, resume ----
+    function nearest(){
+      var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = 1e9;
+      cards.forEach(function(c, n){ var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if(d < bd){ bd = d; best = n; } });
+      return best;
+    }
+    function settle(){
+      if(animating) return;
+      var p = nearest(); pos = p; setActive(p); normalize(); schedule();
+    }
+    track.addEventListener('scroll', function(){
+      if(animating) return;
+      clearTimeout(settleT); settleT = setTimeout(settle, 160);
+    }, {passive:true});
+    var carousel = track.parentNode;
+    ['touchstart','pointerdown'].forEach(function(ev){
+      carousel.addEventListener(ev, pause, {passive:true});
+    });
+    ['touchend','touchcancel','pointerup','pointercancel'].forEach(function(ev){
+      carousel.addEventListener(ev, function(){ setTimeout(resume, 400); }, {passive:true});
+    });
+    carousel.addEventListener('focusin', function(){ if(track.matches(':focus-visible')) pause(); });
+    carousel.addEventListener('focusout', resume);
+
+    // ---- run only while visible (checked by the ticker above) ----
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) schedule(); });
+    schedule();
+    window.addEventListener('resize', function(){ if(!animating) jumpTo(pos); });
+    window.addEventListener('load', function(){ if(!animating) jumpTo(pos); });
+    jumpTo(pos);
   })();
 
   // Why Choose Us: mobile swipe dots

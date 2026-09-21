@@ -816,6 +816,51 @@
     margin-top:auto; background:var(--navy); color:#fff; border-radius:999px; padding:15px 26px; font-size:16px;
     box-shadow:0 12px 24px rgba(6,20,45,.38);
   }
+
+  /* ===== Contact Us section (Testimonials -> Contact Us -> Footer) ===== */
+  #contact{
+    padding:84px 0 92px;
+    background:linear-gradient(180deg,#F4F9FF 0%, #FFFFFF 70%);
+    scroll-margin-top: calc(92px + env(safe-area-inset-top,0px));
+  }
+  #contact .container{max-width:1240px;}
+  #contact .contact-grid{max-width:1060px; margin:0 auto; width:100%;}
+  #contact .contact-left, #contact .contact-right{min-width:0;}
+  #contact .contact-left{justify-content:flex-start;}
+
+  @media (max-width:900px){
+    #contact{padding:54px 0 66px;}
+    #contact .contact-grid{grid-template-columns:1fr; border-radius:22px;}
+  }
+
+  @media (max-width:560px){
+    #contact{padding:44px 0 56px;}
+    #contact .container{padding:0 14px;}
+    #contact .contact-grid{border-radius:20px;}
+    #contact .contact-left{padding:16px 16px 18px;}
+    #contact .contact-right{padding:20px 16px 24px;}
+
+    /* sticky needs non-clipping ancestors: unclip the card and re-round the panels */
+    #contact .contact-grid{overflow:visible;}
+    #contact .contact-left{overflow:visible; border-radius:20px 20px 0 0;}
+    #contact .contact-right{border-radius:0 0 20px 20px; background:#fff;}
+    #contact .contact-left::after{display:none;}
+
+    /* Logo stays put while the Contact Us content scrolls past it */
+    #contact .contact-left .logo-pill{
+      position:-webkit-sticky;
+      position:sticky;
+      top: calc(84px + env(safe-area-inset-top,0px));
+      z-index:6;
+      align-self:flex-start;
+      margin-bottom:10px;
+    }
+  }
+
+  /* Native, unblocked touch scrolling + no sideways overflow */
+  #contact, #contact *{ -webkit-overflow-scrolling:touch; }
+  #contact .contact-right{ overflow-x:clip; }
+  #contact img, #contact select, #contact input, #contact textarea{ max-width:100%; }
 </style>
 </head>
 <body>
@@ -843,8 +888,9 @@
         <a href="#about">About Us</a>
         <a href="#why">Why Choose Us</a>
         <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact Us</a>
       </nav>
-      <a href="#" class="btn btn-primary btn-sm" id="contactUsBtnDesktop">Contact Us <span>→</span></a>
+      <a href="#contact" class="btn btn-primary btn-sm" id="contactUsBtnDesktop">Contact Us <span>→</span></a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
@@ -876,7 +922,7 @@
     <a href="#about" class="mm-link"><span class="dd-ic blue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="mm-label">About Us</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
     <a href="#why" class="mm-link"><span class="dd-ic green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mm-label">Why Choose Us</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
     <a href="#testimonials" class="mm-link"><span class="dd-ic indigo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mm-label">Testimonials</span><svg class="mm-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-    <a href="#" class="btn btn-primary mobile-cta" id="contactUsBtnMobile">Contact Us <span>→</span></a>
+    <a href="#contact" class="btn btn-primary mobile-cta" id="contactUsBtnMobile">Contact Us <span>→</span></a>
   </div>
 </div>
 
@@ -1226,70 +1272,14 @@
 
 
 <!-- ================= FOOTER ================= -->
-<footer id="footer">
+<!-- ================= CONTACT US (after Testimonials, before Footer) ================= -->
+<section id="contact" class="section" aria-labelledby="contactTitle">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo-pill"><svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg></span>
-        <p>Empowering business through people, purpose, and seamless travel. A trusted partner delivering integrated HR solutions, workforce manpower, governed CSR programs, corporate travel desks, and tailored commercial financing.</p>
-        <span class="footer-compliance">✅ NSIC Registered · 100% Statutory Compliant</span>
-        <div class="footer-social">
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="X (Twitter)">✕</a>
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-        </div>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Core Verticals</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#testimonials">Client Voices</a></li>
-          <li><a href="#" id="footerContactLink">Contact Advisory Desk</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Core Verticals</h4>
-        <ul>
-          <li><a href="#workforce">Human Resources &amp; Staffing</a></li>
-          <li><a href="#workforce">Industrial &amp; Facility Manpower</a></li>
-          <li><a href="#workforce">CSR Project Management</a></li>
-          <li><a href="#travel">Corporate Travel &amp; Mobility</a></li>
-          <li><a href="#finhub">SIRI Fin Hub — B2B Loans</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Enterprise Advisory</h4>
-        <a href="#" class="btn btn-primary btn-sm footer-contact-btn" id="footerConnectBtn">Connect Us <span>→</span></a>
-        <div class="footer-contact-item">✉️ info@sirigroup.com</div>
-        <div class="footer-contact-item">📍 24/7 Corporate Mobility Desk SLA</div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Copyright © 2026 SIRI Group. All Rights Reserved.</span>
-      <div class="links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms &amp; Conditions</a>
-        <a href="#">Statutory Compliance</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ================= WhatsApp Float ================= -->
-<button class="wa-float" id="waFloat" aria-label="Chat with us on WhatsApp">💬</button>
-
-<!-- ================= CONTACT MODAL ================= -->
-<div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <button class="modal-close" id="modalCloseBtn" aria-label="Close dialog">×</button>
-    <div class="contact-grid" style="border-radius:26px;">
+    <div class="contact-grid">
       <div class="contact-left">
         <span class="logo-pill"><svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg></span>
         <span class="eyebrow" style="align-self:flex-start;">🤝 Let's Build Something Great</span>
-        <h2 id="modalTitle" class="contact-title">Connect With <span class="accent">SIRI Group</span></h2>
+        <h2 id="contactTitle" class="contact-title">Connect With <span class="accent">SIRI Group</span></h2>
         <p>Get in touch with us for professional consultation and customized solutions for your business needs.</p>
         <div class="location-cards">
           <div class="location-card">
@@ -1361,7 +1351,62 @@
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-pill"><svg class="logo" viewBox="0 0 568 210" role="img" aria-label="SIRI Group logo" focusable="false"><use href="#siri-logo"/></svg></span>
+        <p>Empowering business through people, purpose, and seamless travel. A trusted partner delivering integrated HR solutions, workforce manpower, governed CSR programs, corporate travel desks, and tailored commercial financing.</p>
+        <span class="footer-compliance">✅ NSIC Registered · 100% Statutory Compliant</span>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="X (Twitter)">✕</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">◎</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Core Verticals</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#testimonials">Client Voices</a></li>
+          <li><a href="#contact" id="footerContactLink">Contact Advisory Desk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Core Verticals</h4>
+        <ul>
+          <li><a href="#workforce">Human Resources &amp; Staffing</a></li>
+          <li><a href="#workforce">Industrial &amp; Facility Manpower</a></li>
+          <li><a href="#workforce">CSR Project Management</a></li>
+          <li><a href="#travel">Corporate Travel &amp; Mobility</a></li>
+          <li><a href="#finhub">SIRI Fin Hub — B2B Loans</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enterprise Advisory</h4>
+        <a href="#contact" class="btn btn-primary btn-sm footer-contact-btn" id="footerConnectBtn">Connect Us <span>→</span></a>
+        <div class="footer-contact-item">✉️ info@sirigroup.com</div>
+        <div class="footer-contact-item">📍 24/7 Corporate Mobility Desk SLA</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Copyright © 2026 SIRI Group. All Rights Reserved.</span>
+      <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Statutory Compliance</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WhatsApp Float ================= -->
+<button class="wa-float" id="waFloat" aria-label="Chat with us on WhatsApp">💬</button>
 
 <!-- ================= LIGHTBOX ================= -->
 <div class="lightbox-overlay" id="lightbox">
@@ -1390,7 +1435,7 @@
   mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
 
   // Active nav link on scroll
-  var sections = ['home','services','workforce','finhub','travel','about','why','testimonials'];
+  var sections = ['home','services','workforce','finhub','travel','about','why','testimonials','contact'];
   var navLinks = document.querySelectorAll('nav.links > a[href^="#"]');
   function onScroll(){
     var pos = window.scrollY + 140;
@@ -1407,30 +1452,34 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  // Contact modal
-  var modal = document.getElementById('contactModal');
-  var modalClose = document.getElementById('modalCloseBtn');
-  var lastFocus = null;
-  function openModal(){
-    lastFocus = document.activeElement;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function(){ modalClose.focus(); }, 50);
+  // Contact Us -> smooth scroll to the Contact section (Testimonials -> Contact Us -> Footer)
+  var contactSection = document.getElementById('contact');
+  function headerOffset(){
+    var h = document.querySelector('header');
+    return (h ? h.getBoundingClientRect().height : 76) + 16;
   }
-  function closeModal(){
-    if(!modal.classList.contains('open')) return;
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    if(lastFocus && lastFocus.focus){ try{ lastFocus.focus(); }catch(err){} }
+  function goToContact(){
+    if(!contactSection) return;
+    closeMenu();
+    var top = contactSection.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    if(top < 0) top = 0;
+    try{
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }catch(err){
+      window.scrollTo(0, top);
+    }
   }
+  function closeModal(){ /* modal replaced by an inline section */ }
   var openers = ['contactUsBtnDesktop','contactUsBtnMobile','consultDeskBtn','consultAdvisorsBtn','startConversationBtn','applyFinancingBtn','sendEnquiryBtn','footerConnectBtn','footerContactLink','waFloat'];
   openers.forEach(function(id){
     var el = document.getElementById(id);
-    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); closeMenu(); openModal(); }); }
+    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); goToContact(); }); }
   });
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeModal(); closeMenu(); document.getElementById('lightbox').classList.remove('open'); } });
+  // Any nav/footer anchor pointing at #contact uses the same offset-aware scroll
+  document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); goToContact(); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMenu(); document.getElementById('lightbox').classList.remove('open'); } });
 
   // Testimonials carousel: infinite loop, slow auto-slide (10 s hold), arrows / dots / swipe
   (function(){
@@ -1614,7 +1663,7 @@
     var message = document.getElementById('mMessage').value.trim();
     if(!name || !phone || !email){ return; }
     window.open(buildWaLink(name, phone, email, service, message), '_blank');
-    closeModal();
+    modalForm.reset();
   });
 
   // Lightbox for service/gallery images

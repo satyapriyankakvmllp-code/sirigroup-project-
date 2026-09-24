@@ -924,16 +924,15 @@
   .wa-dialog-box .btn{width:100%; justify-content:center; margin-top:4px;}
   .wa-dialog-box form > .field, .wa-dialog-box form > .form-row{margin-bottom:14px;}
   /* Tighter gap between Name and Phone Number only (field sizes and all other gaps unchanged). Gap = 16px flex gap - 4px = 12px. */
-  #modalForm > .field:first-child,
-  #waFloatForm > .field:first-child,
-  #waFloatForm > .form-row,
-  #waFloatForm > .field-select{margin-bottom:-4px;}   /* WhatsApp dialog: Name, Phone/Email row, Service all sit 12px apart (was 30px) */
+  #modalForm > .field:first-child, #modalForm > .form-row, #modalForm > .field-select,
+  #waFloatForm > .field:first-child, #waFloatForm > .form-row, #waFloatForm > .field-select{margin-bottom:-4px;}   /* Name, Phone/Email row and Service all sit 12px apart in both forms (WhatsApp dialog was 30px, Contact section 16px) */
+  #modalForm .form-row, #waFloatForm .form-row{row-gap:12px;}   /* Phone above Email when the row stacks (tablet) */
   /* ===== Mobile only: tighter spacing between textboxes + smaller "Interested Service" select in both popups ===== */
   @media (max-width:600px){
     #modalForm, #waFloatForm{gap:12px;}
     #modalForm .form-row, #waFloatForm .form-row{gap:12px;}
     #modalForm > .field:first-child, #waFloatForm > .field:first-child{margin-bottom:0;}
-    #waFloatForm > .field, #waFloatForm > .form-row{margin-bottom:0;}
+    #modalForm > .field, #modalForm > .form-row, #waFloatForm > .field, #waFloatForm > .form-row{margin-bottom:0;}
     #modalForm .field-fl.field-select select,
     #waFloatForm .field-fl.field-select select{font-size:13px; padding:12px 12px;}
     #modalForm .field-select select option,
@@ -1083,8 +1082,8 @@
     .why-tag{font-size:10px; padding:6px 9px;}
   }
   @media (prefers-reduced-motion: reduce){
-    .marquee-track{animation:none;}
-    *{transition:none !important; animation:none !important;}
+    /* the running banner (.marquee-track) is exempt: it keeps scrolling on desktop even when the OS has animations turned off */
+    *:not(.marquee-track){transition:none !important; animation:none !important;}
   }
 
   /* ===== Desktop-only: compact single-row service strip + professional tagline (mobile/tablet untouched) ===== */

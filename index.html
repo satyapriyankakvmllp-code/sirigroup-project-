@@ -687,6 +687,7 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
     display:flex;
     flex-direction:column;
     justify-content:center;
+    align-items:center;   /* SIRI GROUP sits centred over SOLUTIONS */
     min-width:0;
     font-family:var(--brand-font);
     line-height:1;
@@ -695,6 +696,7 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
   .footer-logo-main{
     display:flex;
     align-items:baseline;
+    justify-content:center;
     gap:7px;
     font-size:31px;
     font-weight:900;
@@ -707,13 +709,15 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
     color:#dcecff;
     font-size:12px;
     font-weight:800;
-    letter-spacing:6px;
+    --ls:6px;
+    letter-spacing:var(--ls);
     text-transform:uppercase;
     position:relative;
     display:flex;
     align-items:center;
     gap:10px;
   }
+  .footer-logo-solutions > span{margin-right:calc(-1 * var(--ls));}   /* cancel trailing letter-spacing so the side lines are equal */
   .footer-logo-solutions::before,
   .footer-logo-solutions::after{
     content:"";
@@ -860,7 +864,7 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
     .footer-grid{grid-template-columns:1fr 1fr;}
     .footer-logo-img{width:62px;height:62px;flex-basis:62px;}
     .footer-logo-main{font-size:27px;}
-    .footer-logo-solutions{font-size:10px;letter-spacing:5px;}
+    .footer-logo-solutions{font-size:10px;--ls:5px;}
     footer::after{display:none;}
   }
 
@@ -871,7 +875,7 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
     .footer-logo-img{width:54px;height:54px;flex-basis:54px;}
     .footer-logo-main{font-size:23px;letter-spacing:-.5px;}
     .footer-logo-main{gap:5px;}
-    .footer-logo-solutions{font-size:9px;letter-spacing:4px;margin-top:6px;}
+    .footer-logo-solutions{font-size:9px;--ls:4px;margin-top:6px;}
     .footer-logo-solutions::before,
     .footer-logo-solutions::after{width:22px;}
     .footer-brand p{font-size:13px;}
@@ -953,9 +957,11 @@ var h=document.getElementById('siriIntro');if(h&&h.parentNode)h.parentNode.remov
     #modalForm > .field:first-child, #waFloatForm > .field:first-child{margin-bottom:0;}
     #modalForm > .field, #modalForm > .form-row, #waFloatForm > .field, #waFloatForm > .form-row{margin-bottom:0;}
     #modalForm .field-fl.field-select select,
-    #waFloatForm .field-fl.field-select select{font-size:13px; padding:12px 12px;}
+    #waFloatForm .field-fl.field-select select{font-size:12px; padding:12px 12px;}
     #modalForm .field-select select option,
-    #waFloatForm .field-select select option{font-size:13px;}
+    #waFloatForm .field-select select option,
+    #modalForm .field-select select optgroup,
+    #waFloatForm .field-select select optgroup{font-size:12px; line-height:1.3;}
   }
 
   @keyframes fadeOut{from{opacity:1;} to{opacity:0;}}

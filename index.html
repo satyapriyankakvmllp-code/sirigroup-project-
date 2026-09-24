@@ -255,7 +255,7 @@
   .mini-card .ico{width:38px;height:38px;border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:17px;}
   .mini-card h3{font-size:16px;}
   .mini-card p{font-size:13.5px;}
-  #about{background:#F3F8FC;}
+  #about{background:#F3F8FC; padding-top:48px; padding-bottom:48px;}   /* trimmed vertical spacing only (was 88px) */
   #about .mini-card{background:#fff; border:1px solid #E4ECF5; box-shadow:0 8px 22px rgba(15,46,82,.07);}
   .mini-card h3{font-family:var(--brand-font); font-weight:700; letter-spacing:.2px;}
   @media (hover:hover){
@@ -923,6 +923,22 @@
   .wa-dialog-box p.wa-sub{font-size:13px; margin:0 0 20px;}
   .wa-dialog-box .btn{width:100%; justify-content:center; margin-top:4px;}
   .wa-dialog-box form > .field, .wa-dialog-box form > .form-row{margin-bottom:14px;}
+  /* Tighter gap between Name and Phone Number only (field sizes and all other gaps unchanged). Gap = 16px flex gap - 4px = 12px. */
+  #modalForm > .field:first-child,
+  #waFloatForm > .field:first-child,
+  #waFloatForm > .form-row,
+  #waFloatForm > .field-select{margin-bottom:-4px;}   /* WhatsApp dialog: Name, Phone/Email row, Service all sit 12px apart (was 30px) */
+  /* ===== Mobile only: tighter spacing between textboxes + smaller "Interested Service" select in both popups ===== */
+  @media (max-width:600px){
+    #modalForm, #waFloatForm{gap:12px;}
+    #modalForm .form-row, #waFloatForm .form-row{gap:12px;}
+    #modalForm > .field:first-child, #waFloatForm > .field:first-child{margin-bottom:0;}
+    #waFloatForm > .field, #waFloatForm > .form-row{margin-bottom:0;}
+    #modalForm .field-fl.field-select select,
+    #waFloatForm .field-fl.field-select select{font-size:13px; padding:12px 12px;}
+    #modalForm .field-select select option,
+    #waFloatForm .field-select select option{font-size:13px;}
+  }
 
   @keyframes fadeOut{from{opacity:1;} to{opacity:0;}}
   @keyframes popOut{from{opacity:1; transform:none;} to{opacity:0; transform:translateY(18px) scale(.97);}}
@@ -981,6 +997,7 @@
   }
   @media (max-width:600px){
     .section{padding:60px 0;}
+    #about{padding-top:36px; padding-bottom:32px;}   /* trimmed vertical spacing only (was 60px) */
     #why{padding-top:28px;}
     #home{padding-top:18px;}
     .hero-grid{padding-bottom:24px;}
@@ -1004,7 +1021,8 @@
     .tst-card{padding:22px 20px;}
     .nav-shell{padding:0 14px;}
     .footer-grid{grid-template-columns:1fr;}
-    .badge-strip{gap:20px; justify-content:flex-start;}
+    /* Badge words (Reliable / Efficient / People Centric / Global Reach): fluid on mobile, no orphaned word */
+    .badge-strip{gap:12px 16px; justify-content:space-between; padding:clamp(36px,10vw,52px) 0 clamp(28px,8vw,40px); font-size:clamp(12.5px,3.4vw,14px); line-height:1.25;}
     .tag-chip{padding:4px 8px 4px 4px; gap:4px; max-width:38%;}
     .tag-chip .chip-ic{width:18px; height:18px; border-radius:6px;}
     .tag-chip .chip-ic svg{width:10px; height:10px;}
@@ -1055,6 +1073,10 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     .footer-bottom{flex-direction:column; align-items:flex-start;}
+  }
+  @media (max-width:479px){
+    .badge-strip{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(12px,3.5vw,16px) clamp(10px,3vw,20px); justify-content:normal;}
+    .badge-strip span{min-width:0; gap:clamp(6px,2vw,8px);}
   }
   @media (max-width:380px){
     .svc-foot{flex-wrap:wrap;}
@@ -1714,31 +1736,7 @@ footer a.social-icon:hover {
     </div>
     <div class="tst-carousel" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
       <div class="tst-track" id="tstTrack" tabindex="0" style="">
-        <div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">💰 B2B Financing &amp; Credit</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"SIRI Fin Hub orchestrated our working capital consortium syndication effortlessly. Their deep institutional network, fast-track documentation, and transparent terms saved us critical months during a key operational expansion."</p>
-          <div class="tst-person">
-            <div class="avatar">VM</div>
-            <div><div class="name">Vikram Malhotra</div><div class="role">Managing Director &amp; Founder, National Logistics &amp; Freight Solutions</div></div>
-          </div>
-          <span class="tst-badge">⚡ Fast-Track Credit Sanction</span>
-        </div><div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">🏭 Industrial &amp; Facility Manpower</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"Deploying over 450 certified technical and facility personnel across three manufacturing plants was handled seamlessly by SIRI Group. 100% statutory compliance, payroll precision, and zero shift disruptions from Day 1."</p>
-          <div class="tst-person">
-            <div class="avatar">SN</div>
-            <div><div class="name">Suresh Nambiar</div><div class="role">Chief Operating Officer, Precision Engineering &amp; Infrastructure</div></div>
-          </div>
-          <span class="tst-badge">✅ 100% Statutory Compliant</span>
-        </div><div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">💬 CSR Project Governance</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"Their end-to-end CSR project management delivered measurable outcomes for our rural skill development and environmental initiatives. Transparent execution, verified NGO partners, and flawless regulatory documentation throughout."</p>
-          <div class="tst-person">
-            <div class="avatar">PK</div>
-            <div><div class="name">Pooja Kulkarni</div><div class="role">Head of Corporate Affairs &amp; Sustainability, Renewable Power &amp; Clean Energy Co.</div></div>
-          </div>
-          <span class="tst-badge">📊 Measurable Impact Metrics</span>
-        </div><div class="tst-card">
+        <div class="tst-card">
           <div class="tst-top"><span class="tst-tag">🧑‍💼 Executive Search &amp; Staffing</span><span class="stars">★★★★★</span></div>
           <p class="tst-quote">"SIRI Group transformed our pan-India engineering recruitment. Their multi-stage screening ensured every candidate was rigorously vetted and aligned with our leadership culture. They filled critical executive mandates in record time."</p>
           <div class="tst-person">
@@ -1783,31 +1781,7 @@ footer a.social-icon:hover {
           </div>
           <span class="tst-badge">📊 Measurable Impact Metrics</span>
         </div>
-      <div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">🧑‍💼 Executive Search &amp; Staffing</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"SIRI Group transformed our pan-India engineering recruitment. Their multi-stage screening ensured every candidate was rigorously vetted and aligned with our leadership culture. They filled critical executive mandates in record time."</p>
-          <div class="tst-person">
-            <div class="avatar">RS</div>
-            <div><div class="name">Rajesh Sharma</div><div class="role">VP – Human Resources &amp; Talent Strategy, Leading Automotive &amp; Industrial Conglomerate</div></div>
-          </div>
-          <span class="tst-badge">🏅 1,200+ Verified Placements</span>
-        </div><div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">✈️ Corporate Travel &amp; Mobility</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"Centralizing our multi-city executive mobility with SIRI Corporate Travel eliminated all logistics friction. From dynamic flight desks to urgent visa processing and premium hotel partnerships, the 24/7 dedicated support is exceptional."</p>
-          <div class="tst-person">
-            <div class="avatar">AD</div>
-            <div><div class="name">Ananya Deshmukh</div><div class="role">Director – Procurement &amp; Global Operations, Enterprise Consulting &amp; Cloud Solutions</div></div>
-          </div>
-          <span class="tst-badge">🕐 24/7 Global Desk SLA</span>
-        </div><div class="tst-card is-clone" aria-hidden="true">
-          <div class="tst-top"><span class="tst-tag">💰 B2B Financing &amp; Credit</span><span class="stars">★★★★★</span></div>
-          <p class="tst-quote">"SIRI Fin Hub orchestrated our working capital consortium syndication effortlessly. Their deep institutional network, fast-track documentation, and transparent terms saved us critical months during a key operational expansion."</p>
-          <div class="tst-person">
-            <div class="avatar">VM</div>
-            <div><div class="name">Vikram Malhotra</div><div class="role">Managing Director &amp; Founder, National Logistics &amp; Freight Solutions</div></div>
-          </div>
-          <span class="tst-badge">⚡ Fast-Track Credit Sanction</span>
-        </div></div>
+      </div>
     </div>
     <div class="tst-controls">
       <button type="button" class="tst-arrow" id="tstPrev" aria-label="Previous testimonial">←</button>
@@ -2120,6 +2094,7 @@ footer a.social-icon:hover {
   (function(){
     var track = document.getElementById('tstTrack');
     if(!track) return;
+    [].slice.call(track.querySelectorAll('.tst-card.is-clone')).forEach(function(c){ c.parentNode.removeChild(c); });   // never let clones become "originals"
     var originals = [].slice.call(track.querySelectorAll('.tst-card'));
     var N = originals.length;
     if(!N) return;
@@ -2149,8 +2124,10 @@ footer a.social-icon:hover {
     }
     function ease(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }   // ease-in-out cubic
 
+    var ignoreScrollUntil = 0;
     function jumpTo(p){            // instant, invisible re-position (clone -> real twin)
       track.classList.add('no-tr');
+      ignoreScrollUntil = Date.now() + 400;   // our own re-position must not restart the 10 s timer
       track.style.scrollSnapType = 'none';
       track.scrollLeft = centerOf(p);
       pos = p; setActive(p);
@@ -2180,7 +2157,7 @@ footer a.social-icon:hover {
       p = Math.max(0, Math.min(cards.length - 1, p));
       pos = p; setActive(p);
       if(reduce){ track.scrollLeft = centerOf(p); track.style.scrollSnapType = ''; normalize(); return; }
-      animateTo(centerOf(p), dur, function(){ normalize(); schedule(); });
+      animateTo(centerOf(p), dur, function(){ normalize(); schedule(Math.max(0, HOLD - dur)); });   // slide time counts inside the 10 s, so one card every 10 s
     }
 
     // ---- autoplay: hold 10 s -> slide slowly -> hold again ----
@@ -2246,7 +2223,7 @@ footer a.social-icon:hover {
       var p = nearest(); pos = p; setActive(p); normalize(); schedule();
     }
     track.addEventListener('scroll', function(){
-      if(animating) return;
+      if(animating || Date.now() < ignoreScrollUntil) return;
       clearTimeout(settleT); settleT = setTimeout(settle, 160);
     }, {passive:true});
     var carousel = track.parentNode;

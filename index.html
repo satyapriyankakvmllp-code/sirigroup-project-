@@ -4654,6 +4654,138 @@
       color: #FFFFFF !important;
       transform: translateY(-2px);
     }
+    /* =====================================================================
+       Mobile-only refinements (desktop / tablet untouched)
+       ===================================================================== */
+
+    /* 2. Footer (mobile): "Enterprise Advisory" heading sits ABOVE the Connect Us button, not beside it */
+    @media (max-width:600px) {
+      footer h4 {
+        display: block;
+        width: fit-content;
+      }
+
+      footer h4+.footer-contact-btn {
+        display: flex;
+        width: fit-content;
+      }
+    }
+
+    /* 3. Our Services (very small phones): the two footer items stay on ONE row */
+    @media (max-width:380px) {
+      .svc-foot {
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+
+      .svc-foot .svc-btn,
+      .svc-foot .svc-meta {
+        min-width: 0;
+        flex-shrink: 1;
+      }
+
+      .svc-foot .svc-btn {
+        padding: 6px 6px 6px 12px;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .svc-foot .svc-btn i {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
+
+      .svc-foot .svc-meta {
+        gap: 5px;
+        font-size: 11px;
+      }
+
+      .svc-foot .svc-meta i {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width:340px) {
+      .svc-foot {
+        gap: 6px;
+      }
+
+      .svc-foot .svc-btn {
+        padding: 5px 5px 5px 10px;
+        gap: 5px;
+        font-size: 11px;
+      }
+
+      .svc-foot .svc-btn i {
+        width: 22px;
+        height: 22px;
+      }
+
+      .svc-foot .svc-meta {
+        gap: 4px;
+        font-size: 10px;
+      }
+
+      .svc-foot .svc-meta i {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    /* 4. "Connect With Siri Group" dialog (mobile): compact, clean, fits without long scrolling */
+    @media (max-width:600px) {
+      .wa-dialog-box {
+        padding: 20px 14px 16px;
+        border-radius: 20px;
+        max-height: calc(100vh - 20px);
+        max-height: calc(100dvh - 20px);
+      }
+
+      .wa-dialog-box h2 {
+        font-size: 19px;
+        margin-bottom: 2px;
+        padding-right: 44px;
+      }
+
+      .wa-dialog-box p.wa-sub {
+        font-size: 12px;
+        line-height: 1.4;
+        margin: 0 0 14px;
+      }
+
+      #waFloatForm,
+      #waFloatForm .form-row {
+        gap: 10px;
+      }
+
+      .wa-dialog-box .field-fl input,
+      .wa-dialog-box .field-fl textarea {
+        padding-top: 12px;
+        padding-bottom: 10px;
+        font-size: 13.5px;
+      }
+
+      .wa-dialog-box .field-fl textarea {
+        padding-top: 20px;
+        min-height: 64px;
+      }
+
+      /* "Interested Service": compact */
+      #waFloatForm .field-fl.field-select select {
+        padding: 9px 12px;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .wa-dialog-box .whatsapp-btn {
+        padding: 12px;
+        font-size: 14px;
+        margin-top: 2px;
+      }
+    }
   </style>
 </head>
 
@@ -5757,17 +5889,21 @@
         <div class="contact-right">
           <h2>Connect With <span class="accent">Siri Group</span></h2>
           <p>Direct WhatsApp advisory desk · Response within 15 minutes</p>
-          <form id="modalForm">
-            <div class="field field-fl"><input id="mFullName" type="text" placeholder=" " required=""><label
+          <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="xxxxxxxxxxxxxxx">
+            <!-- Email Subject -->
+            <input type="hidden" name="subject" value="New Enquiry - SIRI Group">
+            <div class="field field-fl"><input id="mFullName" name="name" type="text" placeholder=" " required=""><label
                 for="mFullName">Full Name *</label></div>
             <div class="form-row">
-              <div class="field field-fl"><input id="mPhone" type="tel" placeholder=" " required=""><label
+              <div class="field field-fl"><input id="mPhone" name="phone" type="tel" placeholder=" " required=""><label
                   for="mPhone">Phone Number *</label></div>
-              <div class="field field-fl"><input id="mEmail" type="email" placeholder=" " required=""><label
+              <div class="field field-fl"><input id="mEmail" name="email" type="email" placeholder=" " required=""><label
                   for="mEmail">Email Address *</label></div>
             </div>
             <div class="field field-fl field-select">
-              <select id="mService">
+              <select id="mService" name="service">
                 <option>General Enterprise Consultation</option>
                 <option>HR &amp; Manpower Solutions</option>
                 <option>CSR Project Management</option>
@@ -5776,7 +5912,7 @@
               </select>
               <label for="mService">Interested Service</label>
             </div>
-            <div class="field field-fl"><textarea id="mMessage" placeholder=" "></textarea><label for="mMessage">Message
+            <div class="field field-fl"><textarea id="mMessage" name="message" placeholder=" "></textarea><label for="mMessage">Message
                 / Notes (Optional)</label></div>
             <button type="submit" class="btn btn-primary whatsapp-btn">💬 Submit via WhatsApp <span>→</span></button>
           </form>
@@ -5864,17 +6000,20 @@
       <button class="modal-close" id="waDialogClose" aria-label="Close">&times;</button>
       <h2 id="waDialogTitle">Connect With <span class="accent">Siri Group</span></h2>
       <p class="wa-sub">Direct WhatsApp advisory desk · Response within 15 minutes</p>
-      <form id="waFloatForm">
-        <div class="field field-fl"><input id="wafFullName" type="text" placeholder=" " required><label
+      <form id="waFloatForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms Access Key (same key as the Contact form) -->
+        <input type="hidden" name="access_key" value="bd3e68cd-01a3-423f-a039-3b4b92726ac3">
+        <input type="hidden" name="subject" value="New Enquiry - SIRI Group">
+        <div class="field field-fl"><input id="wafFullName" name="name" type="text" placeholder=" " required><label
             for="wafFullName">Full Name *</label></div>
         <div class="form-row">
-          <div class="field field-fl"><input id="wafPhone" type="tel" placeholder=" " required><label
+          <div class="field field-fl"><input id="wafPhone" name="phone" type="tel" placeholder=" " required><label
               for="wafPhone">Phone Number *</label></div>
-          <div class="field field-fl"><input id="wafEmail" type="email" placeholder=" " required><label
+          <div class="field field-fl"><input id="wafEmail" name="email" type="email" placeholder=" " required><label
               for="wafEmail">Email Address *</label></div>
         </div>
         <div class="field field-fl field-select">
-          <select id="wafService">
+          <select id="wafService" name="service">
             <option>General Enterprise Consultation</option>
             <option>HR &amp; Manpower Solutions</option>
             <option>CSR Project Management</option>
@@ -5883,7 +6022,7 @@
           </select>
           <label for="wafService">Interested Service</label>
         </div>
-        <div class="field field-fl"><textarea id="wafMessage" placeholder=" "></textarea><label for="wafMessage">Message
+        <div class="field field-fl"><textarea id="wafMessage" name="message" placeholder=" "></textarea><label for="wafMessage">Message
             / Notes (Optional)</label></div>
         <button type="submit" class="btn btn-primary whatsapp-btn">💬 Submit via WhatsApp <span>→</span></button>
       </form>
@@ -6200,10 +6339,43 @@
 
       // Forms -> WhatsApp submit
       function buildWaLink(name, phone, email, service, message) {
-        var text = 'Hello SIRI Group, I would like to connect.%0AName: ' + encodeURIComponent(name) +
-          '%0APhone: ' + encodeURIComponent(phone) + '%0AEmail: ' + encodeURIComponent(email) +
-          '%0AInterested Service: ' + encodeURIComponent(service) + '%0AMessage: ' + encodeURIComponent(message || '-');
-        return 'https://wa.me/918977704517?text=' + text;
+        // WhatsApp formatting: *text* = bold. The user reviews the pre-filled text and presses Send.
+        var text = 'SIRI Group Enquiry\n\n' +
+          '*Name*: ' + name + '\n' +
+          '*Phone*: ' + phone + '\n' +
+          '*Email*: ' + email + '\n' +
+          '*Service*: ' + service + '\n' +
+          '*Message*: ' + (message || '-');
+        return 'https://wa.me/918977704517?text=' + encodeURIComponent(text);
+      }
+
+      // Email copy of the same enquiry via Web3Forms (fire-and-forget: never blocks or delays WhatsApp)
+      function sendToWeb3Forms(form) {
+        try {
+          var keyInput = form.querySelector('input[name="access_key"]');
+          var key = keyInput ? keyInput.value.trim() : '';
+          if (!key || /^x+$/i.test(key)) {
+            console.warn('Web3Forms access key not set - email copy skipped.');
+            return;
+          }
+          var fd = new FormData(form);
+          fetch(form.getAttribute('action') || 'https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: fd,
+            headers: { 'Accept': 'application/json' },
+            keepalive: true // lets the request finish even if the browser switches to the WhatsApp app
+          }).catch(function (err) { console.warn('Web3Forms request failed:', err); });
+        } catch (err) {
+          console.warn('Web3Forms error:', err);
+        }
+      }
+
+      // Guard against double taps creating duplicate submissions
+      function lockSubmit(form) {
+        if (form.dataset.sending === '1') return false;
+        form.dataset.sending = '1';
+        setTimeout(function () { form.dataset.sending = ''; }, 2500);
+        return true;
       }
       var modalForm = document.getElementById('modalForm');
       modalForm.addEventListener('submit', function (e) {
@@ -6218,7 +6390,9 @@
           if (firstInvalid && firstInvalid.reportValidity) firstInvalid.reportValidity();
           return;
         }
+        if (!lockSubmit(modalForm)) return;
         var waUrl = buildWaLink(name, phone, email, service, message);
+        sendToWeb3Forms(modalForm); // read the fields BEFORE reset()
         var waWin = window.open(waUrl, '_blank');
         if (!waWin) { window.location.href = waUrl; }
         modalForm.reset();
@@ -6272,7 +6446,9 @@
             if (firstInvalid && firstInvalid.reportValidity) firstInvalid.reportValidity();
             return;
           }
+          if (!lockSubmit(waFloatForm)) return;
           var waUrl2 = buildWaLink(name, phone, email, service, message);
+          sendToWeb3Forms(waFloatForm); // read the fields BEFORE reset()
           var waWin2 = window.open(waUrl2, '_blank', 'noopener');
           if (!waWin2) { window.location.href = waUrl2; }
           waFloatForm.reset();

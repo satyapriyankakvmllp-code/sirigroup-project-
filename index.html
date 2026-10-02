@@ -5889,34 +5889,52 @@
         <div class="contact-right">
           <h2>Connect With <span class="accent">Siri Group</span></h2>
           <p>Direct WhatsApp advisory desk · Response within 15 minutes</p>
+      
           <form id="modalForm" action="https://api.web3forms.com/submit" method="POST">
-            <!-- Web3Forms Access Key -->
-            <input type="hidden" name="access_key" value="bd3e68cd-01a3-423f-a039-3b4b92726ac3">
-            <!-- Email Subject -->
-            <input type="hidden" name="subject" value="New Enquiry - SIRI Group">
-            <div class="field field-fl"><input id="mFullName" name="name" type="text" placeholder=" " required=""><label
-                for="mFullName">Full Name *</label></div>
-            <div class="form-row">
-              <div class="field field-fl"><input id="mPhone" name="phone" type="tel" placeholder=" " required=""><label
-                  for="mPhone">Phone Number *</label></div>
-              <div class="field field-fl"><input id="mEmail" name="email" type="email" placeholder=" " required=""><label
-                  for="mEmail">Email Address *</label></div>
-            </div>
-            <div class="field field-fl field-select">
-              <select id="mService" name="service">
-                <option>General Enterprise Consultation</option>
-                <option>HR &amp; Manpower Solutions</option>
-                <option>CSR Project Management</option>
-                <option>Corporate Travel &amp; Mobility</option>
-                <option>Siri Fin Hub — B2B Loans</option>
-              </select>
-              <label for="mService">Interested Service</label>
-            </div>
-            <div class="field field-fl"><textarea id="mMessage" name="message" placeholder=" "></textarea><label for="mMessage">Message
-                / Notes (Optional)</label></div>
-            <button type="submit" class="btn btn-primary whatsapp-btn">💬 Submit via WhatsApp <span>→</span></button>
-          </form>
-        </div>
+
+    <div class="field field-fl">
+      <input id="mFullName" name="name" type="text" placeholder=" " required>
+      <label for="mFullName">Full Name *</label>
+    </div>
+
+    <div class="form-row">
+      <div class="field field-fl">
+        <input id="mPhone" name="phone" type="tel" placeholder=" " required>
+        <label for="mPhone">Phone Number *</label>
+      </div>
+
+      <div class="field field-fl">
+        <input id="mEmail" name="email" type="email" placeholder=" " required>
+        <label for="mEmail">Email Address *</label>
+      </div>
+    </div>
+
+    <div class="field field-fl field-select">
+      <select id="mService" name="service">
+        <option>General Enterprise Consultation</option>
+        <option>HR &amp; Manpower Solutions</option>
+        <option>CSR Project Management</option>
+        <option>Corporate Travel &amp; Mobility</option>
+        <option>Siri Fin Hub — B2B Loans</option>
+      </select>
+      <label for="mService">Interested Service</label>
+    </div>
+
+    <div class="field field-fl">
+      <textarea id="mMessage" name="message" placeholder=" "></textarea>
+      <label for="mMessage">Message / Notes (Optional)</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary whatsapp-btn">
+      💬 Submit via WhatsApp <span>→</span>
+    </button>
+
+    <!-- Web3Forms (email copy of the enquiry). Same access key as the floating WhatsApp dialog. -->
+    <input type="hidden" name="access_key" value="bd3e68cd-01a3-423f-a039-3b4b92726ac3">
+    <input type="hidden" name="subject" value="New Enquiry - SIRI Group">
+
+  </form>
+</div>
       </div>
     </div>
   </section>

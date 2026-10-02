@@ -1385,6 +1385,50 @@ footer a.social-icon:hover {
   transform: translateY(-2px);
 }
 
+  /* ===== Mobile fixes: footer contact, services footer row, Connect-With-SIRI dialogs ===== */
+  @media (max-width:600px){
+    /* footer: heading on its own line, "Connect Us" button below it */
+    footer .footer-contact-btn{display:flex; width:fit-content;}
+
+    /* Connect With Siri Group (contact form + floating WhatsApp dialog): compact but clean */
+    .wa-dialog-box{padding:20px 16px 16px; border-radius:20px;}
+    .wa-dialog-box h2{font-size:19px; margin-bottom:2px; padding-right:26px;}
+    .wa-dialog-box p.wa-sub{font-size:12px; line-height:1.4; margin:0 0 12px; padding-right:28px;}
+    #contact .contact-right{padding:16px 14px 18px;}
+    .contact-right h2{font-size:19px; margin-bottom:4px;}
+    .contact-right > p{font-size:12px; line-height:1.4; margin-bottom:12px;}
+    #modalForm, #waFloatForm{gap:10px;}
+    #modalForm .form-row, #waFloatForm .form-row{gap:10px; row-gap:10px;}
+    :is(#modalForm,#waFloatForm) .field-fl input{padding:11px 12px 9px; font-size:13px;}
+    :is(#modalForm,#waFloatForm) .field-fl textarea{padding:19px 12px 8px; font-size:13px; min-height:64px;}
+    :is(#modalForm,#waFloatForm) .field-fl.field-select select{padding:10px 12px; font-size:12px;}
+    :is(#modalForm,#waFloatForm) .field-fl label{top:12px; left:12px; font-size:13px;}
+    :is(#modalForm,#waFloatForm) .field-fl input:focus + label,
+    :is(#modalForm,#waFloatForm) .field-fl input:not(:placeholder-shown) + label,
+    :is(#modalForm,#waFloatForm) .field-fl textarea:focus + label,
+    :is(#modalForm,#waFloatForm) .field-fl textarea:not(:placeholder-shown) + label,
+    :is(#modalForm,#waFloatForm) .field-fl select:focus + label,
+    :is(#modalForm,#waFloatForm) .field-fl.field-select label{top:-8px; left:9px; font-size:10.5px;}
+    #modalForm .whatsapp-btn, #waFloatForm .whatsapp-btn{padding:12px; font-size:14px; margin-top:0;}
+  }
+
+  /* Our Services card footer: keep both texts on one row on very small phones */
+  @media (max-width:380px){
+    .svc-foot{flex-wrap:nowrap; gap:6px;}
+    .svc-btn, .svc-meta{min-width:0;}
+    .svc-btn{font-size:12px; gap:6px; padding:6px 6px 6px 12px;}
+    .svc-btn i{width:22px; height:22px; font-size:12px;}
+    .svc-meta{font-size:11px; gap:5px;}
+    .svc-meta i{width:18px; height:18px; font-size:10px;}
+  }
+  @media (max-width:340px){
+    .svc-inner{padding:14px;}
+    .svc-foot{gap:4px;}
+    .svc-btn{font-size:11px; gap:5px; padding:5px 5px 5px 10px;}
+    .svc-btn i{width:20px; height:20px; font-size:11px;}
+    .svc-meta{font-size:10px; gap:4px;}
+    .svc-meta i{width:16px; height:16px; font-size:9px;}
+  }
 </style>
 </head>
 <body>
@@ -2146,31 +2190,111 @@ footer a.social-icon:hover {
         <div class="modal-tagline">Your Business,  <b>Our Expertise</b></div>
       </div>
       <div class="contact-right">
-        <h2>Connect With <span class="accent">Siri Group</span></h2>
-        <p>Direct WhatsApp advisory desk · Response within 15 minutes</p>
-        <form id="modalForm">
-          <div class="field field-fl"><input id="mFullName" type="text" placeholder=" " required=""><label for="mFullName">Full Name *</label></div>
-          <div class="form-row">
-            <div class="field field-fl"><input id="mPhone" type="tel" placeholder=" " required=""><label for="mPhone">Phone Number *</label></div>
-            <div class="field field-fl"><input id="mEmail" type="email" placeholder=" " required=""><label for="mEmail">Email Address *</label></div>
-          </div>
-          <div class="field field-fl field-select">
-            <select id="mService">
-              <option>General Enterprise Consultation</option>
-              <option>HR &amp; Manpower Solutions</option>
-              <option>CSR Project Management</option>
-              <option>Corporate Travel &amp; Mobility</option>
-              <option>Siri Fin Hub — B2B Loans</option>
-            </select>
-            <label for="mService">Interested Service</label>
-          </div>
-          <div class="field field-fl"><textarea id="mMessage" placeholder=" "></textarea><label for="mMessage">Message / Notes (Optional)</label></div>
-          <button type="submit" class="btn btn-primary whatsapp-btn">💬 Submit via WhatsApp <span>→</span></button>
-        </form>
+  <h2>Connect With <span class="accent">Siri Group</span></h2>
+
+  <p>Direct WhatsApp advisory desk · Response within 15 minutes</p>
+
+  <form
+    id="modalForm"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+  >
+
+    <!-- Web3Forms Access Key -->
+    <input
+      type="hidden"
+      name="access_key"
+      value="bd3e68cd-01a3-423f-a039-3b4b92726ac3"
+    >
+
+    <!-- Email Subject -->
+    <input
+      type="hidden"
+      name="subject"
+      value="New Enquiry - SIRI Group"
+    >
+
+    <div class="field field-fl">
+      <input
+        id="mFullName"
+        name="name"
+        type="text"
+        placeholder=" "
+        required
+      >
+      <label for="mFullName">Full Name *</label>
+    </div>
+
+    <div class="form-row">
+
+      <div class="field field-fl">
+        <input
+          id="mPhone"
+          name="phone"
+          type="tel"
+          placeholder=" "
+          required
+        >
+        <label for="mPhone">Phone Number *</label>
       </div>
+
+      <div class="field field-fl">
+        <input
+          id="mEmail"
+          name="email"
+          type="email"
+          placeholder=" "
+          required
+        >
+        <label for="mEmail">Email Address *</label>
+      </div>
+
+    </div>
+
+    <div class="field field-fl field-select">
+
+      <select
+        id="mService"
+        name="service"
+      >
+        <option>General Enterprise Consultation</option>
+        <option>HR &amp; Manpower Solutions</option>
+        <option>CSR Project Management</option>
+        <option>Corporate Travel &amp; Mobility</option>
+        <option>Siri Fin Hub — B2B Loans</option>
+      </select>
+
+      <label for="mService">Interested Service</label>
+
+    </div>
+
+    <div class="field field-fl">
+
+      <textarea
+        id="mMessage"
+        name="message"
+        placeholder=" "
+      ></textarea>
+
+      <label for="mMessage">
+        Message / Notes (Optional)
+      </label>
+
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary whatsapp-btn"
+    >
+      💬 Submit via WhatsApp <span>→</span>
+    </button>
+
+  </form>
+</div>
     </div>
   </div>
 </section>
+
 
 <!-- SIRI Group Solutions footer: existing favicon icon + horizontal brand lockup -->
 <footer id="footer">
@@ -2575,12 +2699,59 @@ footer a.social-icon:hover {
     });
   });
 
-  // Forms -> WhatsApp submit
+  // Forms -> WhatsApp (message pre-filled, user presses Send) + Web3Forms email
+  var WA_NUMBER = '919861341427';
+  function isMobileDevice(){
+    var ua = navigator.userAgent || '';
+    return /Android|iPhone|iPad|iPod|Windows Phone|Mobile/i.test(ua) ||
+      (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);   // iPadOS reports as Mac
+  }
+  function buildWaText(name, phone, email, service, message){
+    return '*SIRI Group Enquiry*\n\n' +
+      '*Name:* ' + name + '\n' +
+      '*Phone:* ' + phone + '\n' +
+      '*Email:* ' + email + '\n' +
+      '*Service:* ' + service + '\n' +
+      '*Message:* ' + (message || '-');
+  }
   function buildWaLink(name, phone, email, service, message){
-    var text = 'Hello SIRI Group, I would like to connect.%0AName: ' + encodeURIComponent(name) +
-      '%0APhone: ' + encodeURIComponent(phone) + '%0AEmail: ' + encodeURIComponent(email) +
-      '%0AInterested Service: ' + encodeURIComponent(service) + '%0AMessage: ' + encodeURIComponent(message || '-');
-    return 'https://wa.me/919861341427?text=' + text;
+    var text = encodeURIComponent(buildWaText(name, phone, email, service, message));
+    return 'https://wa.me/' + WA_NUMBER + '?text=' + text; // universal link: app when available, otherwise WhatsApp Web
+  }
+  // Uses the same Web3Forms key + subject that live in the #modalForm hidden inputs (not duplicated in JS)
+  function sendToWeb3Forms(d){
+    try{
+      var keyEl = document.querySelector('#modalForm input[name="access_key"]');
+      var subjEl = document.querySelector('#modalForm input[name="subject"]');
+      if(!keyEl || !keyEl.value) return;
+      var fd = new FormData();
+      fd.append('access_key', keyEl.value);
+      fd.append('subject', subjEl ? subjEl.value : 'New Enquiry - SIRI Group');
+      fd.append('from_name', 'SIRI Group Website');
+      fd.append('name', d.name);
+      fd.append('phone', d.phone);
+      fd.append('email', d.email);
+      fd.append('service', d.service);
+      fd.append('message', d.message || '-');
+      // keepalive lets the request finish even if the page navigates to WhatsApp (mobile)
+      fetch('https://api.web3forms.com/submit', {method:'POST', body:fd, keepalive:true}).catch(function(){});
+    }catch(err){ /* an email failure must never block WhatsApp */ }
+  }
+  function submitEnquiry(d, btn){
+    if(btn){
+      if(btn.dataset.busy === '1') return false;      // guard against double submission
+      btn.dataset.busy = '1';
+      setTimeout(function(){ btn.dataset.busy = '0'; }, 3000);
+    }
+    var waUrl = buildWaLink(d.name, d.phone, d.email, d.service, d.message);
+    var mobile = isMobileDevice();
+    var waWin = null;
+    if(!mobile){ waWin = window.open(waUrl, '_blank'); }   // opened inside the click, so it is not popup-blocked
+    sendToWeb3Forms(d);
+    if(mobile){ window.location.href = waUrl; }            // same tab -> hands over to the WhatsApp app
+    else if(!waWin){ window.location.href = waUrl; }       // popup blocked -> fall back to same tab
+    else { try{ waWin.opener = null; }catch(err){} }
+    return true;
   }
   var modalForm = document.getElementById('modalForm');
   modalForm.addEventListener('submit', function(e){
@@ -2595,10 +2766,8 @@ footer a.social-icon:hover {
       if(firstInvalid && firstInvalid.reportValidity) firstInvalid.reportValidity();
       return;
     }
-    var waUrl = buildWaLink(name, phone, email, service, message);
-    var waWin = window.open(waUrl, '_blank');
-    if(!waWin){ window.location.href = waUrl; }
-    modalForm.reset();
+    var sent = submitEnquiry({name:name, phone:phone, email:email, service:service, message:message}, modalForm.querySelector('button[type="submit"]'));
+    if(sent) modalForm.reset();
   });
 
   // Floating message icon -> WhatsApp enquiry dialog (full form, same as Contact section)
@@ -2649,11 +2818,11 @@ footer a.social-icon:hover {
         if(firstInvalid && firstInvalid.reportValidity) firstInvalid.reportValidity();
         return;
       }
-      var waUrl2 = buildWaLink(name, phone, email, service, message);
-      var waWin2 = window.open(waUrl2, '_blank', 'noopener');
-      if(!waWin2){ window.location.href = waUrl2; }
-      waFloatForm.reset();
-      closeWaDialog();
+      var sent2 = submitEnquiry({name:name, phone:phone, email:email, service:service, message:message}, waFloatForm.querySelector('button[type="submit"]'));
+      if(sent2){
+        waFloatForm.reset();
+        closeWaDialog();
+      }
     });
   }
 
